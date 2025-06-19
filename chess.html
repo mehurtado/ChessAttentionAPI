@@ -45,7 +45,7 @@
 
     // --- WebSocket Logic ---
     function connectWebSocket() {
-        ws = new WebSocket("ws://localhost:8000/ws/move");
+        ws = new WebSocket("wss://chess-attention-api.onrender.com/ws/move");
 
         ws.onopen = function(event) {
             console.log("WebSocket connection established.");
