@@ -87,8 +87,8 @@
     function onDragStart(source, piece, position, orientation) {
         if (game.game_over()) return false;
         
-        if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-            (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+        // Only allow the player to move pieces for White, and only when it's White's turn.
+        if (game.turn() !== 'w' || piece.search(/^b/) !== -1) {
             return false;
         }
     }
