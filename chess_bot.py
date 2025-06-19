@@ -42,6 +42,12 @@ class ChessBot:
         try:
             self.model.load_state_dict(torch.load(model_path, map_location=self.device))
             print(f"Successfully loaded model weights from {model_path}")
+
+            # Quantize the model for faster CPU inference
+            self.model = torch.quantization.quantize_dynamic(
+                self.model, {torch.nn.Linear}, dtype=torch.qint8
+            )
+            print("Model has been quantized for CPU performance.")
         except FileNotFoundError:
             print(f"Error: Model file not found at {model_path}. The bot will use random weights.")
         except Exception as e:
