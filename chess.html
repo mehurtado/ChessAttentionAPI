@@ -7,11 +7,17 @@
     <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
     
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #2c2f33; color: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #2c2f33; color: #ffffff; margin-top: 2em; }
         .container { display: flex; flex-direction: column; align-items: center; gap: 20px; }
-        #myBoard { width: 400px; }
+        
+        /* --- FIX for board size --- */
+        #myBoard {
+            width: 60vh; /* Make board responsive to viewport height */
+            max-width: 600px; /* But don't let it get too big on large screens */
+        }
+        
         .info { text-align: center; font-size: 1.2em; }
-        #status, #fen { font-family: 'Courier New', Courier, monospace; color: #99aab5; }
+        #status, #fen { font-family: 'Courier New', Courier, monospace; color: #99aab5; max-width: 600px; word-wrap: break-word; }
         button { background-color: #7289da; color: white; border: none; padding: 10px 20px; font-size: 1em; border-radius: 5px; cursor: pointer; transition: background-color 0.2s; }
         button:hover { background-color: #5b6eae; }
     </style>
@@ -49,8 +55,7 @@
 
         ws.onopen = function(event) {
             console.log("WebSocket connection established.");
-            // **FIXED:** Called the correct function name
-            updateStatusAndFen(); 
+            updateStatusAndFen("Your move (White)."); 
         };
 
         ws.onmessage = function(event) {
@@ -80,7 +85,6 @@
 
     // --- Chessboard Logic ---
     function onDragStart(source, piece, position, orientation) {
-        // **FIXED:** Changed game.isGameOver() to game.game_over()
         if (game.game_over()) return false;
         
         if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
@@ -137,7 +141,6 @@
     }
     
     function checkGameOver() {
-        // **FIXED:** Changed game.isGameOver() to game.game_over()
         if (game.game_over()) {
             ws.close();
         }
@@ -158,7 +161,8 @@
     const config = {
         draggable: true,
         position: 'start',
-        // **FIXED:** Added pieceTheme to load piece images correctly
+        // --- FIX for missing pieces ---
+        // This tells the library where to load the piece images from.
         pieceTheme: 'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/img/chesspieces/wikipedia/{piece}.png',
         onDragStart: onDragStart,
         onDrop: onDrop,
