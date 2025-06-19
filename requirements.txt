@@ -4,3 +4,4 @@ python-chess
 torch
 numpy
 gunicorn
+websockets
