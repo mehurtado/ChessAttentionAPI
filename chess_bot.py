@@ -7,6 +7,7 @@ import config  # Import the central configuration
 from model import AttentionChessNet
 from mcts import MCTS
 from chess_env import ChessEnv
+from utils import get_device
 
 class ChessBot:
     """
@@ -22,8 +23,8 @@ class ChessBot:
             model_path (str): Path to the trained PyTorch model checkpoint (.pth file).
         """
         # Load configuration from your config.py file
-        self.device = torch.device(config.DEVICE)
-        self.mcts_simulations = config.MCTS_SIMULATIONS_EVAL  # Use eval simulations for web play
+        self.device = get_device()
+        self.mcts_simulations = config.MCTS_SIMULATIONS_EVAL
 
         print(f"Initializing ChessBot on device: {self.device}")
         print(f"Using {self.mcts_simulations} MCTS simulations per move.")
