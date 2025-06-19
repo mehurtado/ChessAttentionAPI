@@ -25,7 +25,7 @@ C_PUCT = 1.5            # Exploration constant in PUCT (e.g., 1.0 - 2.5)
 DIRICHLET_ALPHA = 0.3   # Alpha for Dirichlet noise (e.g., 0.3 for chess)
 DIRICHLET_EPSILON = 0.25 # Epsilon for Dirichlet noise (e.g., 0.25)
 MCTS_SIMULATIONS_SELF_PLAY = 800 # Number of MCTS simulations per move during self-play
-MCTS_SIMULATIONS_EVAL = 200    # Number of MCTS simulations per move during evaluation
+MCTS_SIMULATIONS_EVAL = 50    # Number of MCTS simulations per move during evaluation
 
 # --- Self-Play (self_play.py) ---
 TEMPERATURE_MOVES = 30  # Number of moves to use temperature sampling (τ=1.0)
