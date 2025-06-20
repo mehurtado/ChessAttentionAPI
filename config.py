@@ -36,7 +36,7 @@ NUM_SELF_PLAY_GAMES_PER_ITERATION = 15 # Number of games to generate per AlphaZe
 LEARNING_RATE = 3e-4
 BATCH_SIZE = 256        # (e.g., 256-512, constrained by VRAM)
 L2_REG_CONST = 1e-4
-NUM_TRAINING_EPOCHS_PER_ITERATION = 5 # Number of epochs to train per AlphaZero iteration
+NUM_TRAINING_EPOCHS_PER_ITERATION = 1 # Number of epochs to train per AlphaZero iteration
 # Or NUM_TRAINING_STEPS_PER_ITERATION = 1000
 GRAD_CLIP_NORM = None # Optional: max norm for gradient clipping
 
