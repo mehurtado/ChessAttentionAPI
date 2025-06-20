@@ -103,6 +103,7 @@
         if (move === null) return 'snapback';
         
         updateStatusAndFen();
+        onSnapEnd();
         checkGameOver();
 
         if (!game.game_over()) {
@@ -138,7 +139,6 @@
         }
         statusEl.text(statusText);
         fenEl.text(game.fen());
-        board.position(game.fen())
     }
     
     function checkGameOver() {
